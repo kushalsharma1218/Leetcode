@@ -23,6 +23,8 @@ class Solution {
     }
 }
 
+// n2
+
 
 class Solution {
     int count = 0;

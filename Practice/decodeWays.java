@@ -20,7 +20,7 @@ class A
 		}
 	}
 	
-	    public static int getMin(String s, int i,int dp[])
+	public static int getMin(String s, int i,int dp[])
 	{
 		//base case
 		if(i>s.length())return 0;
