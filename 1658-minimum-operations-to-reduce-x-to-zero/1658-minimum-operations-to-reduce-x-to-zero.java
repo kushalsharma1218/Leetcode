@@ -3,7 +3,9 @@ Going with the problem and removing elements fom both sides we are not able to d
 
 find max subarray with sum = totalsum  =. x + sumsubarray
 
-*/
+Can we solve it directly wihtput any transformation.
+
+
 class Solution {
     public int minOperations(int[] nums, int x) {
         int total = 0;
@@ -28,5 +30,32 @@ class Solution {
             }
         }
         return maxi != -1 ? n - maxi : -1;
+    }
+}
+*/
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int current = 0;
+        for (int num : nums) {
+            current += num;
+        }
+        int n = nums.length;
+        int mini = Integer.MAX_VALUE;
+        int left = 0;
+
+        for (int right = 0; right < n; right++) {
+            // sum([0,..,left) + (right,...,n-1]) = x
+            current -= nums[right];
+            // if smaller, move `left` to left
+            while (current < x && left <= right) {
+                current += nums[left];
+                left += 1;
+            }
+            // check if equal
+            if (current == x) {
+                mini = Math.min(mini, (n-1-right)+left);
+            }
+        }
+        return mini != Integer.MAX_VALUE ? mini : -1;
     }
 }
